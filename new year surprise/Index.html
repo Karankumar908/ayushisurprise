@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>New Year Surprise 🎆</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Professional Styling -->
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      height: 100vh;
+      background: linear-gradient(135deg, #020024, #090979, #00d4ff);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+    }
+
+    .card {
+      background: rgba(0, 0, 0, 0.45);
+      backdrop-filter: blur(10px);
+      padding: 40px;
+      border-radius: 18px;
+      text-align: center;
+      max-width: 380px;
+      width: 90%;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+      animation: fadeIn 1.5s ease;
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 1.1rem;
+      opacity: 0.9;
+    }
+
+    button {
+      margin-top: 25px;
+      padding: 14px 30px;
+      font-size: 1.1rem;
+      border: none;
+      border-radius: 30px;
+      background: linear-gradient(135deg, #ff416c, #ff4b2b);
+      color: white;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    }
+
+    /* Popup */
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.7);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      animation: fadeIn 0.5s ease;
+    }
+
+    .popup {
+      background: #111;
+      padding: 35px;
+      border-radius: 16px;
+      text-align: center;
+      max-width: 350px;
+      width: 90%;
+      animation: pop 0.4s ease;
+    }
+
+    .popup h2 {
+      margin-bottom: 12px;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    @keyframes pop {
+      from { transform: scale(0.7); }
+      to   { transform: scale(1); }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Main Card -->
+  <div class="card">
+    <h1>🎆 Happy New Year 2026 🎆</h1>
+    <p>Click below to open your surprise 🎁</p>
+    <button onclick="openSurprise()">Open Surprise</button>
+  </div>
+
+  <!-- Popup -->
+  <div class="overlay" id="overlay">
+    <div class="popup">
+      <h2>💖 Surprise 💖</h2>
+      <p>
+        You are my best part of 2025 <br>
+        and my biggest wish for 2026 ✨
+      </p>
+      <button onclick="closeSurprise()">Close</button>
+    </div>
+  </div>
+
+  <!-- JavaScript -->
+  <script>
+    function openSurprise() {
+      document.getElementById("overlay").style.display = "flex";
+      launchConfetti();
+    }
+
+    function closeSurprise() {
+      document.getElementById("overlay").style.display = "none";
+    }
+
+    // Simple Confetti
+    function launchConfetti() {
+      for (let i = 0; i < 30; i++) {
+        const dot = document.createElement("div");
+        dot.style.position = "fixed";
+        dot.style.width = "6px";
+        dot.style.height = "6px";
+        dot.style.background = "hsl(" + Math.random() * 360 + ",100%,50%)";
+        dot.style.top = "50%";
+        dot.style.left = "50%";
+        dot.style.borderRadius = "50%";
+        dot.style.zIndex = 9999;
+
+        document.body.appendChild(dot);
+
+        const x = (Math.random() - 0.5) * 600;
+        const y = (Math.random() - 0.5) * 600;
+
+        dot.animate([
+          { transform: "translate(0,0)", opacity: 1 },
+          { transform: `translate(${x}px, ${y}px)`, opacity: 0 }
+        ], {
+          duration: 1200,
+          easing: "ease-out"
+        });
+
+        setTimeout(() => dot.remove(), 1200);
+      }
+    }
+  </script>
+
+</body>
+</html>
