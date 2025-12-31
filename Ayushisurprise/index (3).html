@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Ayushi ❤️</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif;}
+body{height:100vh;background:radial-gradient(circle at bottom,#ff512f,#dd2476);display:flex;justify-content:center;align-items:center;overflow:hidden;}
+
+/* FIREWORKS */
+.firework{position:absolute;width:6px;height:6px;border-radius:50%;animation:explode 1.4s ease-out infinite;}
+@keyframes explode{0%{transform:scale(0);opacity:1;}100%{transform:scale(22);opacity:0;}}
+
+/* MAIN CARD */
+.card{background:white;padding:25px;border-radius:22px;text-align:center;width:90%;max-width:360px;box-shadow:0 25px 50px rgba(0,0,0,0.4);animation:entry 1.2s ease;z-index:10;}
+@keyframes entry{from{transform:translateY(80px) scale(0.8);opacity:0;}to{transform:translateY(0) scale(1);opacity:1;}}
+.photo{width:120px;height:120px;border-radius:50%;border:4px solid #ff4e50;object-fit:cover;margin-bottom:10px;}
+h1{color:#ff4e50;margin-bottom:8px;}
+p{font-size:15px;line-height:1.6;margin-bottom:15px;}
+button{padding:10px 22px;background:#ff4e50;color:white;border:none;border-radius:25px;font-size:15px;cursor:pointer;transition:0.3s;}
+button:hover{background:#e84344;transform:scale(1.08);}
+
+/* POPUP */
+.popup{position:fixed;inset:0;background:rgba(0,0,0,0.7);display:none;justify-content:center;align-items:center;z-index:20;}
+.popup-content{background:white;padding:25px;border-radius:22px;text-align:center;width:90%;max-width:330px;animation:pop 0.7s ease;}
+@keyframes pop{from{transform:scale(0.6);opacity:0;}to{transform:scale(1);opacity:1;}}
+.popup img{width:140px;height:140px;border-radius:50%;border:4px solid #ff4e50;margin-bottom:10px;}
+.proposal button{margin:6px;}
+
+/* HEARTS */
+.hearts{position:fixed;width:100%;height:100%;pointer-events:none;}
+.heart{position:absolute;font-size:22px;animation:float 4s linear infinite;}
+@keyframes float{from{transform:translateY(110vh);opacity:1;}to{transform:translateY(-10vh);opacity:0;}}
+</style>
+</head>
+
+<body>
+
+<!-- MUSIC -->
+<audio id="bgMusic" loop>
+  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" type="audio/mpeg">
+</audio>
+
+<!-- FIREWORKS -->
+<div id="fireworks"></div>
+
+<!-- MAIN CARD -->
+<div class="card">
+  <!-- ADD AYUSHI PHOTO HERE -->
+  <img src="ayushi.jpg" class="photo">
+  <h1>Happy New Year Ayushi ❤️</h1>
+  <p>
+    You are my best part of 2025 <br>
+    and my biggest wish for 2026 ✨
+  </p>
+  <button onclick="openSurprise()">Open Surprise 💝</button>
+</div>
+
+<!-- POPUP -->
+<div class="popup" id="popup">
+  <div class="popup-content">
+    <!-- POPUP PHOTO -->
+    <img src="ayushi.jpg">
+    <h2>💖 Surprise 💖</h2>
+    <p>
+      Ayushi 🥺❤️ <br><br>
+      Tum meri zindagi ka <br>
+      sabse khoobsurat hissa ho 💫
+    </p>
+
+    <div class="proposal">
+      <p><b>Will you be mine in 2026? 💍</b></p>
+      <button onclick="yesAnswer()">Yes 😍</button>
+      <button onclick="noAnswer()">No 🙈</button>
+    </div>
+  </div>
+</div>
+
+<!-- HEARTS -->
+<div class="hearts" id="hearts"></div>
+
+<script>
+function openSurprise(){
+  document.getElementById("popup").style.display="flex";
+  document.getElementById("bgMusic").play();
+  createHearts();
+  createFireworks();
+}
+
+function yesAnswer(){
+  alert("Yayyy 😍 Ayushi said YES ❤️💍");
+  console.log("Ayushi clicked YES!");
+  const msg=document.createElement('div');
+  msg.style.position='fixed';
+  msg.style.top='20px';
+  msg.style.left='50%';
+  msg.style.transform='translateX(-50%)';
+  msg.style.background='#ff4e50';
+  msg.style.color='white';
+  msg.style.padding='15px 25px';
+  msg.style.borderRadius='12px';
+  msg.style.fontSize='18px';
+  msg.style.boxShadow='0 4px 10px rgba(0,0,0,0.3)';
+  msg.style.zIndex='50';
+  msg.innerText="💖 Ayushi said YES! 💍";
+  document.body.appendChild(msg);
+  setTimeout(()=>{ msg.remove(); },4000);
+  document.getElementById("popup").style.display="none";
+}
+
+function noAnswer(){
+  alert("No option hi nahi hai 🙈❤️");
+}
+
+/* HEARTS */
+function createHearts(){
+  const hearts=document.getElementById("hearts");
+  hearts.innerHTML="";
+  for(let i=0;i<35;i++){
+    const h=document.createElement("div");
+    h.className="heart";
+    h.innerHTML="❤️";
+    h.style.left=Math.random()*100+"vw";
+    h.style.animationDuration=(3+Math.random()*3)+"s";
+    hearts.appendChild(h);
+  }
+}
+
+/* FIREWORKS */
+function createFireworks(){
+  const fw=document.getElementById("fireworks");
+  for(let i=0;i<20;i++){
+    const f=document.createElement("div");
+    f.className="firework";
+    f.style.left=Math.random()*100+"vw";
+    f.style.top=Math.random()*100+"vh";
+    f.style.background="hsl("+Math.random()*360+",100%,60%)";
+    fw.appendChild(f);
+    setTimeout(()=>f.remove(),1400);
+  }
+}
+</script>
+
+</body>
+</html>
